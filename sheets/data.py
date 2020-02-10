@@ -4,6 +4,7 @@ import os.path
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
+import json
 
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
@@ -50,33 +51,55 @@ def main():
                                 range=range_name).execute()
     values = result.get('values', [])
 
+    # print('values', values)
+    onglet = len(values[0])
+    # print(onglet)
     event_dict = {
-        'summary': ' Papa',
-        'description': 'TNM',
-        'location': 'TNM',
+        'summary': 'Projet Manquant',
+        'description': 'Location',
+        'location': 'Lieu Manquant',
         'start': {
-            'dateTime': '2020-02-10T17:10:00',
+            'dateTime': '2020-02-10T00:00:00',
             'timeZone': 'America/Toronto',
 
         },
 
         'end': {
-            'dateTime': '2020-02-10T17:10:00',
+            'dateTime': '2020-02-10T23:59:00',
             'timeZone': 'America/Toronto',
         }
     }
 
+    almanac = []
     if not values:
         print('No data found.')
     else:
-        print('Name, Major:')
+
+        i = 0
         for row in values:
-            # Print columns A and E, which correspond to indices 0 and 4.
-            print('%s, %s, %s' % (row[0], row[1], row[2]))
 
-            almanac.append((row[0], row[1], row[2]))
+            if i > 0:
+                # j = values[i][0]
 
-    print(almanac)
+                new_dict = 'new'+str(i)
+                new_dict = event_dict.copy()
+
+                new_dict["summary"] = values[i][0]
+                new_dict["location"] = values[i][1]
+                new_dict["start"]["dateTime"] = values[i][2]+'T00:00:00'
+                new_dict["end"]["dateTime"] = values[i][3]+'T23:59:00'
+
+                # print(j)
+                # print(new_dict, "\n")
+
+                almanac.append(new_dict)
+
+            i += 1
+    # print(event_dict)
+    print(*almanac, sep="\n"*2)
+
+    with open('events.json', 'w') as fp:
+        json.dump(almanac, fp)
 
 
 if __name__ == '__main__':
