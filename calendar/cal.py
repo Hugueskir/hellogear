@@ -8,6 +8,7 @@ import os.path
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
+import json
 
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/calendar']
@@ -25,7 +26,12 @@ cal_id = "2htlq72gu386ot4batnafe2lrc@group.calendar.google.com"
 someID = "bzhsNjcxZ20yMGdyc21iM29sMGhoMTJkNzQgMmh0bHE3Mmd1Mzg2b3Q0YmF0bmFmZTJscmNAZw"
 
 cal_name = "pypy"
-# Your VAR
+
+# Va cherche le data ranger dans Json file
+path_json = "../sheets/events.json"
+with open(path_json, 'r') as f:
+    event_json = json.load(f)
+print(event_json)
 # Your VAR
 # Your VAR
 # Your VAR
@@ -80,23 +86,13 @@ def cal():
 
 # ---------------- Creating EVENTS ----------------------
 
-    event = {
-        'summary': ' Papa',
-        'description': 'TNM',
-        'location': 'TNM',
-        'start': {
-            'dateTime': '2020-02-10T17:10:00',
-            'timeZone': 'America/Toronto',
+    # event est une variable puisée dans json file
+    event = event_json
 
-        },
-
-        'end': {
-            'dateTime': '2020-02-10T17:10:00',
-            'timeZone': 'America/Toronto',
-        }
-    }
-
-    event = service.events().insert(calendarId=cal_id, body=event).execute()
+    for k in range(len(event)):
+        event[k] = service.events().insert(
+            calendarId=cal_id, body=event[k]).execute()
+        # print(k)
     # print('Event created: %s' % (event.get('htmlLink')))
 
 
