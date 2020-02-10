@@ -1,3 +1,6 @@
+# Code marche maintenant mettre le data dans un json
+
+
 from __future__ import print_function
 import datetime
 import pickle
@@ -82,12 +85,12 @@ def cal():
         'description': 'TNM',
         'location': 'TNM',
         'start': {
-            'dateTime': '2020-01-27T09:00:00',
+            'dateTime': '2020-02-10T17:10:00',
             'timeZone': 'America/Toronto',
         },
 
         'end': {
-            'dateTime': '2020-01-27T17:10:00',
+            'dateTime': '2020-02-10T17:10:00',
             'timeZone': 'America/Toronto',
         }
     }
@@ -102,7 +105,7 @@ def cal():
         print('No upcoming events found.')
     for event in events:
         start = event['start'].get('dateTime', event['start'].get('date'))
-        # print(start, event['summary'])
+        print(start, event['summary'])
 
 
 # ------------------ LOOPING PROGRAM -----------------------
