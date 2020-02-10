@@ -1,1 +1,28 @@
-[{"summary": "Zo\u00e9 ", "description": "Location", "location": "Denise Pelletier", "start": {"dateTime": "2020-02-19T00:00:00", "timeZone": "America/Toronto"}, "end": {"dateTime": "2020-03-20T23:59:00", "timeZone": "America/Toronto"}}, {"summary": "Sang", "description": "Location", "location": "Usine C", "start": {"dateTime": "2020-02-19T00:00:00", "timeZone": "America/Toronto"}, "end": {"dateTime": "2020-03-20T23:59:00", "timeZone": "America/Toronto"}}]
+[
+    {
+        "summary": "Zo\u00e9 ",
+        "description": "Location",
+        "location": "Denise Pelletier",
+        "start": {
+            "dateTime": "2020-02-19T00:00:00",
+            "timeZone": "America/Toronto"
+        },
+        "end": {
+            "dateTime": "2020-03-20T23:59:00",
+            "timeZone": "America/Toronto"
+        }
+    },
+    {
+        "summary": "Sang",
+        "description": "Location",
+        "location": "Usine C",
+        "start": {
+            "dateTime": "2020-02-19T00:00:00",
+            "timeZone": "America/Toronto"
+        },
+        "end": {
+            "dateTime": "2020-03-20T23:59:00",
+            "timeZone": "America/Toronto"
+        }
+    }
+]

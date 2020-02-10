@@ -31,7 +31,7 @@ someID = "bzhsNjcxZ20yMGdyc21iM29sMGhoMTJkNzQgMmh0bHE3Mmd1Mzg2b3Q0YmF0bmFmZTJscm
 cal_name = "pypy"
 
 # Va cherche le data ranger dans Json file
-path_json = "../sheets/events.json"
+path_json = "events.json"
 with open(path_json, 'r') as f:
     event_json = json.load(f)
 print(event_json)
