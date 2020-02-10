@@ -16,7 +16,6 @@ SCOPES = ['https://www.googleapis.com/auth/calendar']
 # Your VAR
 # Your VAR
 # Your VAR
-# Your VAR
 
 calid = "2htlq72gu386ot4batnafe2lrc@group.calendar.google.com"
 cal_id = "2htlq72gu386ot4batnafe2lrc@group.calendar.google.com"
