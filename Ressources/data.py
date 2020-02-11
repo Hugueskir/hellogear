@@ -7,11 +7,12 @@ from google.auth.transport.requests import Request
 import json
 from SCOPES import SCOPES
 
+allo = ['all', 'as']
 # If modifying these scopes, delete the file token.pickle.
 # SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
-service = googleapiclient.discovery.build(
-    'calendar', 'v3', developerKey=api_key)
+# service = googleapiclient.discovery.build(
+#     'calendar', 'v3', developerKey=api_key)
 
 # The ID and range of a sample spreadsheet.
 SAMPLE_SPREADSHEET_ID = '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'
@@ -99,12 +100,18 @@ def data():
                 almanac.append(new_dict)
 
             i += 1
+
+    return almanac
+
     # print(event_dict)
-    print(*almanac, sep="\n"*2)
+    # print(*almanac, sep="\n"*2)
 
-    with open('events.json', 'w') as fp:
-        json.dump(almanac, fp)
+    # with open('events.json', 'w') as fp:
+    #     json.dump(almanac, fp)
 
+
+# print(almanac)
 
 if __name__ == '__main__':
     data()
+    # print(almanac)

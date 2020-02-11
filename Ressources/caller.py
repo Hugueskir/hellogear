@@ -3,6 +3,6 @@ from cal import*
 
 
 if __name__ == "__main__":
-    data()
-    cal()
+    event = data()
+    cal(event)
     pass

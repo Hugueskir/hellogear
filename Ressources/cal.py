@@ -1,4 +1,4 @@
-#!/usr/bin/python3.5
+
 # Code marche maintenant mettre le data dans un json
 
 
@@ -10,9 +10,11 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 import json
+
 from SCOPES import SCOPES
 
 print(SCOPES)
+
 
 # If modifying these scopes, delete the file token.pickle.
 # SCOPES = ['https://www.googleapis.com/auth/calendar']
@@ -31,18 +33,20 @@ someID = "bzhsNjcxZ20yMGdyc21iM29sMGhoMTJkNzQgMmh0bHE3Mmd1Mzg2b3Q0YmF0bmFmZTJscm
 
 cal_name = "pypy"
 
-# Va cherche le data ranger dans Json file
-path_json = "events.json"
-with open(path_json, 'r') as f:
-    event_json = json.load(f)
-print(event_json)
+# # Va cherche le data ranger dans Json file
+# path_json = "events.json"
+# with open(path_json, 'r') as f:
+#     event_json = json.load(f)
+# print(event_json)
+
+
 # Your VAR
 # Your VAR
 # Your VAR
 # Your VAR
 
 
-def cal():
+def cal(event):
     """Shows basic usage of the Google Calendar API.
     Prints the start and name of the next 10 events on the user's calendar.
     """
@@ -91,7 +95,7 @@ def cal():
 # ---------------- Creating EVENTS ----------------------
 
     # event est une variable puisée dans json file
-    event = event_json
+    # event = event_json
 
     for k in range(len(event)):
         event[k] = service.events().insert(
@@ -112,10 +116,3 @@ def cal():
 # ------------------ LOOPING PROGRAM -----------------------
 if __name__ == '__main__':
     cal()
-
-
-print('\n'*2, 'todo :', '\n'*2, 'Save all data in JSON from sheets', '\n', 'Iterate through JSON to create Calendar', '\n',
-      'Make sure you delete all old files (maybe some version control)', '\n', 'Package the script in an App')
-
-
-# superdooper
