@@ -82,23 +82,26 @@ def data():
 
         i = 0
         for row in values:
-
+            # if not values:
+            #     pass
+            # else:
             if i > 0:
                 # j = values[i][0]
 
                 new_dict = 'new'+str(i)
                 new_dict = event_dict.copy()
                 try:
-                    new_dict["summary"] = values[i][0]
+                    new_dict["desciption"] = values[i][0]
                     new_dict["location"] = values[i][1]
-                    new_dict["start"]["dateTime"] = values[i][2]+'T00:00:00'
-                    new_dict["end"]["dateTime"] = values[i][3]+'T23:59:00'
+                    new_dict["summary"] = values[i][2]
+                    new_dict["start"]["dateTime"] = values[i][3] + \
+                        'T00:00:00'
+                    new_dict["end"]["dateTime"] = values[i][4]+'T23:59:00'
+
+                    almanac.append(new_dict)
+
                 except IndexError:
                     pass
-                # print(j)
-                # print(new_dict, "\n")
-
-                almanac.append(new_dict)
 
             i += 1
 
