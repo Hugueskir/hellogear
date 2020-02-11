@@ -10,6 +10,9 @@ from SCOPES import SCOPES
 # If modifying these scopes, delete the file token.pickle.
 # SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
+service = googleapiclient.discovery.build(
+    'calendar', 'v3', developerKey=api_key)
+
 # The ID and range of a sample spreadsheet.
 SAMPLE_SPREADSHEET_ID = '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'
 SAMPLE_2 = "1Bi8_jqtMTKN21YdDpyi1YA44dgg0KNkE-v73JEdwO0g"
