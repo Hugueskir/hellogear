@@ -110,8 +110,5 @@ def data():
     #     json.dump(almanac, fp)
 
 
-# print(almanac)
-
 if __name__ == '__main__':
     data()
-    # print(almanac)

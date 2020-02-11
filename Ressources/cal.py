@@ -13,7 +13,7 @@ import json
 
 from SCOPES import SCOPES
 
-print(SCOPES)
+# print(SCOPES)
 
 
 # If modifying these scopes, delete the file token.pickle.
@@ -46,7 +46,7 @@ cal_name = "pypy"
 # Your VAR
 
 
-def cal(event):
+def cal(userEvent):
     """Shows basic usage of the Google Calendar API.
     Prints the start and name of the next 10 events on the user's calendar.
     """
@@ -77,7 +77,7 @@ def cal(event):
 
 # -------------  Calling the calendar --------------
 
-    print('Printing events from', cal_name)
+    # print('Printing events from', cal_name)
 
     events_result = service.events().list(calendarId=calid, timeMin=now,
                                           maxResults=100, singleEvents=True,
@@ -97,20 +97,21 @@ def cal(event):
     # event est une variable puisée dans json file
     # event = event_json
 
-    for k in range(len(event)):
-        event[k] = service.events().insert(
-            calendarId=cal_id, body=event[k]).execute()
+    for k in range(len(userEvent)):
+        userEvent[k] = service.events().insert(
+            calendarId=cal_id, body=userEvent[k]).execute()
         # print(k)
     # print('Event created: %s' % (event.get('htmlLink')))
 
 
 # ---------------- Printing EVENTS ----------------------
-
-    if not events:
-        print('No upcoming events found.')
-    for event in events:
-        start = event['start'].get('dateTime', event['start'].get('date'))
-        print(start, event['summary'])
+# TB Shoot les events apparaissent avec un délai
+    # print(events)
+    # if not events:
+    #     print('No upcoming events found.')
+    # for event in events:
+    #     start = event['start'].get('dateTime', event['start'].get('date'))
+    #     print(start, event['summary'])
 
 
 # ------------------ LOOPING PROGRAM -----------------------
