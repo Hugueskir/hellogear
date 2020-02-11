@@ -88,12 +88,13 @@ def data():
 
                 new_dict = 'new'+str(i)
                 new_dict = event_dict.copy()
-
-                new_dict["summary"] = values[i][0]
-                new_dict["location"] = values[i][1]
-                new_dict["start"]["dateTime"] = values[i][2]+'T00:00:00'
-                new_dict["end"]["dateTime"] = values[i][3]+'T23:59:00'
-
+                try:
+                    new_dict["summary"] = values[i][0]
+                    new_dict["location"] = values[i][1]
+                    new_dict["start"]["dateTime"] = values[i][2]+'T00:00:00'
+                    new_dict["end"]["dateTime"] = values[i][3]+'T23:59:00'
+                except IndexError:
+                    pass
                 # print(j)
                 # print(new_dict, "\n")
 
