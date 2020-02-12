@@ -1,3 +1,1 @@
-from data import s
-
-print(s)
+# this a commit test
