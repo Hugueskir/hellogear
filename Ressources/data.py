@@ -64,13 +64,13 @@ def data():
         'description': 'Location',
         'location': 'Lieu Manquant',
         'start': {
-            'dateTime': '2020-02-10T00:00:00',
+            'dateTime': '',
             'timeZone': 'America/Toronto',
 
         },
 
         'end': {
-            'dateTime': '2020-02-10T23:59:00',
+            'dateTime': '',
             'timeZone': 'America/Toronto',
         }
     }

@@ -7,9 +7,13 @@ import datetime
 import pickle
 import os.path
 from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 import json
+import sys
+
 
 from SCOPES import SCOPES
 
@@ -101,27 +105,42 @@ def cal(userEvent):
 
         old_list.append(old_event['id'])
 
-    print(old_list)
+    # print(old_list)
 
 
 # ---------------- Creating EVENTS ----------------------
 
-    # event est une variable puisée dans json file
-    # event = event_json
+    # event est une variable puisée dans json file (deprecated INFO)
+    # event = event_json (deprecated INFO)
 
     for k in range(len(userEvent)):
 
-        # try:
+        try:
 
-        userEvent[k] = service.events().insert(
-            calendarId=cal_id, body=userEvent[k]).execute()
+            userEvent[k] = service.events().insert(
+                calendarId=cal_id, body=userEvent[k]).execute()
 
-        # except HttpError:
+            deleteGO = True
 
-        #     print('oups')
+        except HttpError as err:
 
-    # print(k)
-    # print('Event created: %s' % (event.get('htmlLink')))
+            # print(sys.exc_info()[1])
+
+            if err.resp.status in [400, 404]:
+
+                if err.resp.get('content-type', '').startswith('application/json'):
+                    reason = json.loads(err.content).get(
+                        'error').get('errors')[0].get('message')
+
+            print('\n', "Veuillez remplir tous les champs")
+            print("L'événement comportant l'erreur a été ignoré")
+            exit()
+            #         print(reason)
+
+            # service.events().delete(calendarId=cal_id,
+            #                         eventId=userEvent[k]).execute()
+
+            deleteGO = False
 
 
 # ---------------- Printing EVENTS ----------------------
@@ -135,10 +154,12 @@ def cal(userEvent):
 
 # ---------------- deleting old EVENTS ----------------------
 
-    # for event2go in old_list:
+    if deleteGO:
 
-    #     service.events().delete(calendarId=cal_id,
-    #                             eventId=event2go).execute()
+        for event2go in old_list:
+
+            service.events().delete(calendarId=cal_id,
+                                    eventId=event2go).execute()
 
 
 # ------------------ LOOPING PROGRAM -----------------------
