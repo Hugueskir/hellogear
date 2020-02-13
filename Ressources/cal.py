@@ -34,9 +34,9 @@ someID = "bzhsNjcxZ20yMGdyc21iM29sMGhoMTJkNzQgMmh0bHE3Mmd1Mzg2b3Q0YmF0bmFmZTJscm
 cal_name = "pypy"
 
 # # Va cherche le data ranger dans Json file
-# path_json = "events.json"
-# with open(path_json, 'r') as f:
-#     event_json = json.load(f)
+path_json = "events.json"
+with open(path_json, 'r') as f:
+    event_json = json.load(f)
 # print(event_json)
 
 
@@ -47,6 +47,8 @@ cal_name = "pypy"
 
 
 def cal(userEvent):
+
+    # def cal(userEvent):
     """Shows basic usage of the Google Calendar API.
     Prints the start and name of the next 10 events on the user's calendar.
     """
@@ -85,11 +87,21 @@ def cal(userEvent):
     events = events_result.get('items', [])
 
 
-# ---------------- Deleting ALL EVENTS ----------------------
+# ---------------- grabing old events ALL EVENTS ----------------------
+# prior to deletion if parsing is succefull
+    old_list = []
 
-    for event in events:
-        service.events().delete(calendarId=cal_id,
-                                eventId=event['id']).execute()
+    for old_event in events:
+        # print(calendarId)
+        # service.events().delete(calendarId=cal_id,
+        #                         eventId=event['id']).execute()
+
+        old_event = service.events().get(
+            calendarId=cal_id, eventId=old_event['id']).execute()
+
+        old_list.append(old_event['id'])
+
+    print(old_list)
 
 
 # ---------------- Creating EVENTS ----------------------
@@ -98,9 +110,17 @@ def cal(userEvent):
     # event = event_json
 
     for k in range(len(userEvent)):
+
+        # try:
+
         userEvent[k] = service.events().insert(
             calendarId=cal_id, body=userEvent[k]).execute()
-        # print(k)
+
+        # except HttpError:
+
+        #     print('oups')
+
+    # print(k)
     # print('Event created: %s' % (event.get('htmlLink')))
 
 
@@ -113,7 +133,14 @@ def cal(userEvent):
     #     start = event['start'].get('dateTime', event['start'].get('date'))
     #     print(start, event['summary'])
 
+# ---------------- deleting old EVENTS ----------------------
+
+    # for event2go in old_list:
+
+    #     service.events().delete(calendarId=cal_id,
+    #                             eventId=event2go).execute()
+
 
 # ------------------ LOOPING PROGRAM -----------------------
 if __name__ == '__main__':
-    cal()
+    cal(event_json)
