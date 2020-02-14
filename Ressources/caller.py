@@ -2,7 +2,9 @@ from data import*
 from cal import*
 
 
-if __name__ == "__main__":
+def caller():
+
+    # if __name__ == "__main__":
     userEvent = data()
     cal(userEvent)
 
@@ -12,3 +14,7 @@ if __name__ == "__main__":
     print("run somewhere")
 
     pass
+
+
+if __name__ == "__main__":
+    caller()

@@ -56,9 +56,6 @@ def data():
                                 range=range_name).execute()
     values = result.get('values', [])
 
-    # print('values', values)
-    onglet = len(values[0])
-    # print(onglet)
     event_dict = {
         'summary': 'Projet Manquant',
         'description': 'Location',
